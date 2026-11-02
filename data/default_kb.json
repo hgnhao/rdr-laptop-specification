@@ -1,0 +1,17 @@
+{
+  "id": "rule_0",
+  "conditions": [],
+  "conclusion": "Laptop Daily Office Entry-Level",
+  "cornerstone_case": {
+    "budget": 6.5,
+    "ram_gb": 8,
+    "weight_kg": 1.6,
+    "battery_hours": 6.0,
+    "primary_usage": "Office / School",
+    "gpu_required": "Integrated",
+    "screen_type": "Standard FHD"
+  },
+  "right_child": null,
+  "false_child": null
+}
+
