@@ -14,7 +14,6 @@ interface NumericMeta {
   min: number;
   max: number;
   step: number;
-  /** Nilai dalam satuan tampilan (budget ditampilkan dalam juta). */
   toDisplay: (v: number) => number;
   fromDisplay: (v: number) => number;
   displayUnit: string;
@@ -150,7 +149,6 @@ export const OPERATOR_SYMBOL: Record<Operator, string> = {
   "!=": "≠",
 };
 
-/** Contoh: "Budget ≥ Rp 25 jt". */
 export function formatCondition(c: Condition): string {
   return `${attributeLabel(c.attribute)} ${OPERATOR_SYMBOL[c.operator]} ${formatValue(c.attribute, c.value)}`;
 }

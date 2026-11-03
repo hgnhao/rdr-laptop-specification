@@ -16,7 +16,6 @@ import type {
 
 export const DEFAULT_CONCLUSION = "Laptop Daily Office Entry-Level";
 
-/** Kasus kunci Rule 0: budget 5 juta, office, 1,8 kg, tanpa GPU. */
 export const DEFAULT_CORNERSTONE: Case = {
   budget: 5_000_000,
   ram_gb: 8,
@@ -29,7 +28,6 @@ export const DEFAULT_CORNERSTONE: Case = {
 
 export class RuleError extends Error {}
 
-/** KB awal: hanya Rule 0, `t → kesimpulan default`. */
 export function createDefaultKB(now = new Date().toISOString()): KnowledgeBase {
   return {
     version: 1,
@@ -244,7 +242,6 @@ function validateCondition(c: unknown, where: string): Condition {
   return { attribute, operator, value } as Condition;
 }
 
-/** Membaca dan memvalidasi KB hasil ekspor, termasuk struktur pohonnya. */
 export function parseKB(json: string): KnowledgeBase {
   let data: unknown;
   try {

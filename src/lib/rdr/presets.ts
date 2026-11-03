@@ -43,10 +43,6 @@ export const PERSONAS: Persona[] = [
 
 const persona = (id: string) => PERSONAS.find((p) => p.id === id)!.case;
 
-/**
- * Sesi pakar contoh. Tiap koreksi diputar ulang lewat engine, jadi letak rule
- * dan kasus kuncinya persis sama dengan bila pakar mengisinya lewat aplikasi.
- */
 const DEMO_SESSION: { case: Case; conclusion: string; conditions: Condition[] }[] = [
   {
     case: persona("gamer"),

@@ -108,7 +108,6 @@ function Shell() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  // Bar ringkasan di mobile muncul saat panel hasil tidak terlihat.
   const [resultVisible, setResultVisible] = useState(true);
   useEffect(() => {
     const el = resultRef.current;

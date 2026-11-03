@@ -24,7 +24,6 @@ interface Props {
 interface Pick {
   enabled: boolean;
   candidate: number;
-  /** Nilai batas numerik dalam satuan tampilan, sebagai teks input. */
   threshold: string;
 }
 
@@ -40,7 +39,6 @@ function buildCondition(d: Difference, p: Pick): Condition | null {
   return { ...base, value: NUMERIC_ATTRIBUTES[base.attribute].fromDisplay(n) } as Condition;
 }
 
-/** Lingkaran pilih ala iOS. */
 function SelectCircle({ checked }: { checked: boolean }) {
   return (
     <span

@@ -17,10 +17,6 @@ interface Props {
 
 const noopSubscribe = () => () => {};
 
-/**
- * Sheet modal yang bisa ditarik turun untuk ditutup. Keputusan tutup memakai
- * titik akhir yang diproyeksikan dari kecepatan, bukan posisi lepas saja.
- */
 export function Sheet({ open, onClose, title, subtitle, children, footer }: Props) {
   const isClient = useSyncExternalStore(noopSubscribe, () => true, () => false);
   const controls = useDragControls();

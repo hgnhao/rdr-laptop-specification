@@ -2,7 +2,6 @@ export type Usage = "office" | "gaming" | "video_editing" | "ai_training";
 export type YesNo = "yes" | "no";
 export type Screen = "oled" | "ips" | "tn";
 
-/** Satu kasus: kebutuhan dan preferensi calon pembeli. */
 export interface Case {
   /** Budget dalam Rupiah (IDR). */
   budget: number;
@@ -45,7 +44,6 @@ export interface RuleNode {
 
 export interface KnowledgeBase {
   version: 1;
-  /** `nodes[i].id === i`; Rule 0 selalu di indeks 0 dan menjadi akar. */
   nodes: RuleNode[];
 }
 
@@ -58,7 +56,6 @@ export interface InferenceStep {
   nodeId: number;
   checks: ConditionCheck[];
   satisfied: boolean;
-  /** Node berikutnya yang ditelusuri, atau null bila penelusuran berhenti. */
   next: number | null;
 }
 

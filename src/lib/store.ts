@@ -6,7 +6,6 @@ export interface Consultation {
   id: string;
   at: string;
   case: Case;
-  /** Kesimpulan sistem saat konsultasi. */
   conclusion: string;
   firedId: number;
   verdict: "agree" | "corrected";
@@ -35,9 +34,7 @@ function load(): AppState {
         history: Array.isArray(parsed.history) ? parsed.history : [],
       };
     }
-  } catch {
-    // Data tersimpan rusak: mulai lagi dari Rule 0.
-  }
+  } catch {}
   return { kb: createDefaultKB(), history: [] };
 }
 
@@ -60,15 +57,12 @@ function subscribe(listener: () => void) {
   };
 }
 
-/** Mengganti state dan mengembalikan state sebelumnya, untuk fitur urungkan. */
 export function setState(update: (s: AppState) => AppState): AppState {
   const prev = getSnapshot();
   state = update(prev);
   try {
     localStorage.setItem(KEY, JSON.stringify(state));
-  } catch {
-    // Penyimpanan penuh atau diblokir: state tetap berlaku untuk sesi ini.
-  }
+  } catch {}
   listeners.forEach((l) => l());
   return prev;
 }

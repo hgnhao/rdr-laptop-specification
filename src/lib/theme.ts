@@ -16,7 +16,6 @@ function apply(theme: Theme) {
 
 function subscribe(callback: () => void) {
   const media = matchMedia(SYSTEM_DARK);
-  // Selama pengguna belum memilih, ikuti perubahan tema sistem.
   const onSystemChange = () => {
     if (!localStorage.getItem(KEY)) apply(media.matches ? "dark" : "light");
   };
@@ -28,13 +27,10 @@ function subscribe(callback: () => void) {
   };
 }
 
-/** Ganti tema dengan crossfade, bukan lompatan terang-gelap (DESIGN.md §14). */
 export function setTheme(theme: Theme) {
   try {
     localStorage.setItem(KEY, theme);
-  } catch {
-    // Penyimpanan diblokir: tema tetap berlaku untuk sesi ini.
-  }
+  } catch {}
   if ("startViewTransition" in document) {
     document.startViewTransition(() => apply(theme));
   } else {

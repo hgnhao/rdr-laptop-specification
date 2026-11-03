@@ -11,7 +11,6 @@ interface Props {
   onChange: (c: Case) => void;
 }
 
-/** Judul dua warna khas Apple Store: "Memori. Berapa RAM yang dibutuhkan?" */
 function Section({ title, question, children }: { title: string; question: string; children: ReactNode }) {
   return (
     <section className="mt-14 first:mt-0">

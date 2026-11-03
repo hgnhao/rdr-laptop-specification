@@ -14,7 +14,6 @@ interface Props<T extends string | number> {
   value: T;
   onChange: (value: T) => void;
   options: Option<T>[];
-  /** Unik per instance agar indikator meluncur di dalam kontrol ini saja. */
   id: string;
   ariaLabel: string;
   size?: "sm" | "md";

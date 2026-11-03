@@ -10,7 +10,6 @@ import { layoutTree, NODE_W, SLOT_H, SLOT_W } from "@/lib/treeLayout";
 
 interface Props {
   kb: KnowledgeBase;
-  /** Hasil penelusuran kasus saat ini untuk menyorot jalurnya; null = tanpa sorotan. */
   trace: InferenceResult | null;
   selectedId: number;
   onSelect: (id: number) => void;
@@ -32,7 +31,6 @@ export function TreeCanvas({ kb, trace, selectedId, onSelect }: Props) {
   const x = useMotionValue(0);
   const y = useMotionValue(0);
   const scale = useMotionValue(1);
-  // Disembunyikan sampai pohon dipaskan pertama kali agar tidak berkedip.
   const contentOpacity = useMotionValue(0);
   const downAt = useRef<{ x: number; y: number } | null>(null);
 
@@ -61,7 +59,6 @@ export function TreeCanvas({ kb, trace, selectedId, onSelect }: Props) {
       const s = clamp(next, MIN_SCALE, MAX_SCALE);
       const o = origin ?? { x: viewport.w / 2, y: viewport.h / 2 };
       const current = scale.get();
-      // Titik di bawah kursor tetap di tempat saat diperbesar.
       const nx = o.x - (o.x - x.get()) * (s / current);
       const ny = o.y - (o.y - y.get()) * (s / current);
       setScaleState(s);
@@ -78,7 +75,6 @@ export function TreeCanvas({ kb, trace, selectedId, onSelect }: Props) {
     [viewport, scale, x, y],
   );
 
-  /** "width": muat lebar dengan teks tetap terbaca, rata atas. "all": seluruh pohon terlihat. */
   const fit = useCallback(
     (mode: "width" | "all", instant = false) => {
       if (!viewport.w) return;
@@ -87,7 +83,6 @@ export function TreeCanvas({ kb, trace, selectedId, onSelect }: Props) {
           ? clamp(Math.min((viewport.w - 32) / layout.width, (viewport.h - 32) / layout.height, 1), MIN_SCALE, 1)
           : clamp(Math.min((viewport.w - 32) / layout.width, 1), READABLE_SCALE, 1);
       const nx = (viewport.w - layout.width * s) / 2;
-      // Sisakan ruang di atas untuk legenda.
       const ny = layout.height * s <= viewport.h - LEGEND_ROOM ? Math.max(LEGEND_ROOM, (viewport.h - layout.height * s) / 2) : LEGEND_ROOM;
       setScaleState(s);
       if (instant) {
@@ -113,7 +108,6 @@ export function TreeCanvas({ kb, trace, selectedId, onSelect }: Props) {
     return () => ro.disconnect();
   }, []);
 
-  // Pas-kan ulang saat ukuran pohon atau viewport berubah. Pertama kali tanpa animasi.
   const fitted = useRef(false);
   useEffect(() => {
     if (!viewport.w) return;

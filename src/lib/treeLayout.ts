@@ -18,7 +18,6 @@ interface HNode {
 
 export interface PlacedNode {
   id: number;
-  /** Koordinat pusat horizontal dan sisi atas kartu. */
   x: number;
   y: number;
   h: number;

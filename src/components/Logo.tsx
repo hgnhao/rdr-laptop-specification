@@ -1,4 +1,3 @@
-/** Sama dengan favicon di src/app/icon.svg. */
 export function Logo({ className = "" }: { className?: string }) {
   return (
     <svg viewBox="0 0 64 64" aria-hidden className={`rounded-[6px] dark:ring-1 dark:ring-white/15 ${className}`}>

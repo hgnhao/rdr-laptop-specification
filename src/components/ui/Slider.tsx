@@ -15,7 +15,6 @@ interface Props {
   onChange: (value: number) => void;
 }
 
-/** Nilai ikut bergerak 1:1 dengan thumb selama digeser (DESIGN.md §1). */
 export function Slider({ id, label, value, min, max, step, display, minLabel, maxLabel, onChange }: Props) {
   const pct = ((value - min) / (max - min)) * 100;
   return (
